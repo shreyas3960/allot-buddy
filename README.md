@@ -1,0 +1,2 @@
+# allot-buddy
+min-project
