@@ -35,11 +35,19 @@ curl http://localhost:5000/api/test
 
 ```bash
 cd client
+cp .env.example .env   # then fill in your Firebase config values
 npm install
 npm run dev
 ```
 
 The dev server starts at **http://localhost:5173**.
+
+#### Firebase Setup
+
+1. Create a project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable **Authentication → Sign-in method → Google**
+3. Register a Web app and copy the config values
+4. Paste them into `client/.env` (see `client/.env.example` for the keys)
 
 ### Building for Production
 
@@ -54,7 +62,7 @@ The production bundle is output to `client/dist/`.
 
 - **Frontend:** React 19 · Tailwind CSS 4 · Vite
 - **Backend:** Node.js · Express 5
-- **Authentication:** Google OAuth / Firebase Auth (planned)
+- **Authentication:** Google OAuth / Firebase Auth
 
 ## License
 

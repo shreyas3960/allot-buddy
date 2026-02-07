@@ -1,4 +1,5 @@
 import ToolCard from "./ToolCard";
+import { useAuth } from "../context/AuthContext";
 
 /** List of AI tools displayed in the grid. */
 const tools = [
@@ -41,8 +42,11 @@ const tools = [
 
 /**
  * ToolsSection – renders a responsive grid of AI tool cards.
+ * If the user is not logged in, a prompt to sign in is shown instead.
  */
 function ToolsSection() {
+  const { user, loading } = useAuth();
+
   return (
     <section id="tools" className="min-h-screen px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -50,11 +54,21 @@ function ToolsSection() {
           AI Tools
         </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {tools.map((tool) => (
-            <ToolCard key={tool.name} {...tool} />
-          ))}
-        </div>
+        {loading ? (
+          <p className="text-center text-gray-500">Loading…</p>
+        ) : user ? (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {tools.map((tool) => (
+              <ToolCard key={tool.name} {...tool} />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center gap-4 py-20">
+            <p className="text-lg text-gray-400">
+              Please login to access tools
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
