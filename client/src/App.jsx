@@ -15,16 +15,17 @@ function App() {
 
         {/* Hero / Landing Section */}
         <section className="flex flex-col items-center justify-center min-h-screen px-4 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="animate-fade-in-up text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             Allot Buddy
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-gray-400 sm:text-xl">
+          <p className="animate-fade-in-up mt-4 max-w-xl text-lg text-gray-400 sm:text-xl" style={{ animationDelay: "100ms" }}>
             Your intelligent assistant for smarter resource allocation and
             planning.
           </p>
           <a
             href="#tools"
-            className="mt-8 inline-block rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-gray-950"
+            className="animate-fade-in-up mt-8 inline-block rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-gray-950"
+            style={{ animationDelay: "200ms" }}
           >
             Explore AI Tools
           </a>

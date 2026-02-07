@@ -1,4 +1,5 @@
 import ToolCard from "./ToolCard";
+import Spinner from "./Spinner";
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 
@@ -41,7 +42,7 @@ function ToolsSection() {
         </h2>
 
         {authLoading || loadingTools ? (
-          <p className="text-center text-gray-500">Loading…</p>
+          <Spinner />
         ) : !user ? (
           <div className="flex flex-col items-center gap-4 py-20">
             <p className="text-lg text-gray-400">
@@ -52,8 +53,14 @@ function ToolsSection() {
           <p className="text-center text-red-400">{error}</p>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {tools.map((tool) => (
-              <ToolCard key={tool.name} {...tool} />
+            {tools.map((tool, i) => (
+              <div
+                key={tool.name}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${i * 75}ms` }}
+              >
+                <ToolCard {...tool} />
+              </div>
             ))}
           </div>
         )}

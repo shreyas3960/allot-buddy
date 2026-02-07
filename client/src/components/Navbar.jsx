@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 /**
@@ -6,6 +7,18 @@ import { useAuth } from "../context/AuthContext";
  */
 function Navbar() {
   const { user, loginWithGoogle, logout } = useAuth();
+  const [signingIn, setSigningIn] = useState(false);
+
+  const handleLogin = async () => {
+    setSigningIn(true);
+    try {
+      await loginWithGoogle();
+    } catch (err) {
+      console.error("Sign-in failed:", err);
+    } finally {
+      setSigningIn(false);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-gray-900/80 px-4 py-3 backdrop-blur-md sm:px-6">
@@ -40,10 +53,11 @@ function Navbar() {
           /* Login button */
           <button
             type="button"
-            onClick={loginWithGoogle}
-            className="rounded-lg bg-indigo-600 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+            onClick={handleLogin}
+            disabled={signingIn}
+            className="rounded-lg bg-indigo-600 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-indigo-500 disabled:opacity-50 disabled:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-gray-900"
           >
-            Sign in with Google
+            {signingIn ? "Signing in…" : "Sign in with Google"}
           </button>
         )}
       </div>
