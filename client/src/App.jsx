@@ -1,6 +1,8 @@
+import ToolsSection from "./components/ToolsSection";
+
 /**
  * App component – renders the landing page with a hero section
- * and an empty AI Tools section placeholder.
+ * and the AI Tools grid.
  */
 function App() {
   return (
@@ -22,15 +24,8 @@ function App() {
         </a>
       </section>
 
-      {/* AI Tools Section (placeholder) */}
-      <section
-        id="tools"
-        className="flex items-center justify-center min-h-screen px-4 text-center"
-      >
-        <p className="text-gray-500 text-lg">
-          AI Tools coming soon&hellip;
-        </p>
-      </section>
+      {/* AI Tools Section */}
+      <ToolsSection />
     </div>
   );
 }
